@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mirror Kix – Premium Sneakers Egypt</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config={theme:{extend:{colors:{brand:{red:'#E8132A',dark:'#0A0A0A',mid:'#1A1A1A',gray:'#2A2A2A'}},fontFamily:{display:['Bebas Neue','sans-serif'],body:['Barlow','sans-serif'],cond:['Barlow Condensed','sans-serif']}}}}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:#0A0A0A;color:#fff;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#0A0A0A}::-webkit-scrollbar-thumb{background:#E8132A;border-radius:2px}
+.font-display{font-family:'Bebas Neue',sans-serif}
+.font-cond{font-family:'Barlow Condensed',sans-serif}
+
+/* VIEWS */
+.view{display:none}.view.active{display:block}
+
+/* ANNOUNCEMENT BAR */
+#ann-bar{background:#E8132A;overflow:hidden;height:36px;display:flex;align-items:center}
+.ann-track{display:flex;animation:marquee 20s linear infinite;white-space:nowrap}
+.ann-track span{padding:0 60px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* NAV */
+nav{background:rgba(10,10,10,.96);backdrop-filter:blur(14px);position:sticky;top:0;z-index:100;border-bottom:1px solid #1c1c1c}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;color:#fff;cursor:pointer}
+.nav-logo span{color:#E8132A}
+
+/* SIDEBAR */
+#sidebar{position:fixed;left:-320px;top:0;width:320px;height:100vh;background:#0f0f0f;z-index:200;transition:left .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;border-right:1px solid #1e1e1e}
+#sidebar.open{left:0}
+#sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:199;backdrop-filter:blur(3px)}
+#sb-overlay.show{display:block}
+
+/* HERO */
+.hero-section{position:relative;height:92vh;min-height:580px;overflow:hidden;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0A0A0A 0%,#180205 50%,#0A0A0A 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,19,42,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(232,19,42,.055) 1px,transparent 1px);background-size:60px 60px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,19,42,.12);border:1px solid rgba(232,19,42,.4);border-radius:100px;padding:6px 18px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E8132A;margin-bottom:22px}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,10vw,156px);line-height:.9;color:#fff;text-shadow:0 0 100px rgba(232,19,42,.25)}
+.hero-title em{color:#E8132A;font-style:normal}
+
+/* BUTTONS */
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:#E8132A;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:none;cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-primary:hover{background:#c4101f;transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,19,42,.45)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,.25);cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:#E8132A;color:#E8132A;background:rgba(232,19,42,.07)}
+.floating-shoe{animation:floatY 4.5s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-22px) rotate(-8deg)}}
+.glow-red{filter:drop-shadow(0 24px 64px rgba(232,19,42,.55))}
+
+/* PRODUCT CARDS */
+.product-card{background:#121212;border:1px solid #1e1e1e;border-radius:12px;overflow:hidden;transition:all .3s;cursor:pointer;position:relative}
+.product-card:hover{transform:translateY(-7px);border-color:#E8132A;box-shadow:0 20px 44px rgba(232,19,42,.16)}
+.product-card .img-wrap{background:linear-gradient(135deg,#181818,#212121);position:relative;overflow:hidden;aspect-ratio:1/1}
+.product-card img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.product-card:hover img{transform:scale(1.07)}
+.badge-sale{position:absolute;top:12px;left:12px;background:#E8132A;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;padding:3px 9px;border-radius:3px}
+.badge-new{position:absolute;top:12px;left:12px;background:#fff;color:#0A0A0A;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;padding:3px 9px;border-radius:3px}
+.quick-add{position:absolute;bottom:0;left:0;right:0;background:rgba(232,19,42,.93);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:11px;text-align:center;transform:translateY(100%);transition:transform .26s}
+.product-card:hover .quick-add{transform:translateY(0)}
+
+/* SECTIONS */
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#E8132A;margin-bottom:8px}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,5vw,62px);line-height:1;color:#fff}
+
+/* BRAND PILLS */
+.brand-pill{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 24px;background:#121212;border:1px solid #1e1e1e;border-radius:10px;cursor:pointer;transition:all .25s;white-space:nowrap}
+.brand-pill:hover,.brand-pill.active{background:#1a1a1a;border-color:#E8132A;color:#E8132A}
+.brand-pill span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:inherit;transition:color .25s}
+
+/* FILTER SELECT */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.filter-select{background:#121212;border:1px solid #272727;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;padding:10px 16px;border-radius:6px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23E8132A' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;min-width:150px}
+.filter-select:focus{border-color:#E8132A}
+
+/* SIZE GRID */
+.size-btn{width:52px;height:44px;border:1px solid #2e2e2e;border-radius:6px;background:transparent;color:#bbb;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.size-btn:hover{border-color:#E8132A;color:#fff}
+.size-btn.active{background:#E8132A;border-color:#E8132A;color:#fff}
+.size-btn.out{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+
+/* CART */
+.cart-item{display:flex;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid #1a1a1a}
+.cart-qty{display:flex;align-items:center;gap:8px}
+.qty-btn{width:32px;height:32px;border:1px solid #2e2e2e;border-radius:6px;background:transparent;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qty-btn:hover{border-color:#E8132A;color:#E8132A}
+
+/* PRODUCT MODAL */
+#modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.87);z-index:300;backdrop-filter:blur(5px);align-items:center;justify-content:center}
+#modal-overlay.show{display:flex}
+#modal-box{background:#0f0f0f;border:1px solid #1e1e1e;border-radius:16px;max-width:960px;width:95vw;max-height:90vh;overflow-y:auto;position:relative;animation:modalIn .3s cubic-bezier(.4,0,.2,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(.94) translateY(22px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+/* AUTH GATE MODAL */
+#auth-gate-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:400;backdrop-filter:blur(6px);align-items:center;justify-content:center}
+#auth-gate-overlay.show{display:flex}
+#auth-gate-box{background:#0f0f0f;border:1px solid #222;border-radius:20px;max-width:460px;width:95vw;padding:0;position:relative;animation:modalIn .3s cubic-bezier(.4,0,.2,1);overflow:hidden}
+
+/* AUTH INPUTS */
+.auth-input{width:100%;background:#141414;border:1px solid #2a2a2a;color:#fff;font-family:'Barlow',sans-serif;font-size:14px;padding:13px 16px;border-radius:8px;outline:none;transition:border-color .2s}
+.auth-input:focus{border-color:#E8132A}
+.auth-input::placeholder{color:#4a4a4a}
+
+/* SUCCESS ANIM */
+@keyframes popIn{0%{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.15) rotate(3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+.pop-in{animation:popIn .6s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes confettiDrop{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(80px) rotate(360deg);opacity:0}}
+.confetti-piece{position:absolute;width:8px;height:8px;border-radius:2px;animation:confettiDrop 1.5s ease-out forwards}
+
+/* FADE UP */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .65s,transform .65s}
+.fade-up.in{opacity:1;transform:translateY(0)}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;right:24px;background:#E8132A;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;padding:14px 24px;border-radius:8px;z-index:999;transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none}
+#toast.show{transform:translateY(0);opacity:1}
+
+/* CHECKOUT STEPS */
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;border:2px solid #2e2e2e;color:#4a4a4a;transition:all .3s;flex-shrink:0}
+.step-dot.done{background:#E8132A;border-color:#E8132A;color:#fff}
+.step-dot.active{border-color:#E8132A;color:#E8132A}
+.step-line{flex:1;height:2px;background:#1e1e1e;position:relative;overflow:hidden}
+.step-line-fill{height:100%;background:#E8132A;transition:width .5s}
+
+/* no-scroll */
+.no-scroll::-webkit-scrollbar{display:none}.no-scroll{-ms-overflow-style:none;scrollbar-width:none}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     ANNOUNCEMENT BAR
+════════════════════════════════════════════════ -->
+<div id="ann-bar">
+  <div class="ann-track">
+    <span>🔥 30% OFF + Free Shipping Available — Limited Time</span>
+    <span>🇪🇬 Egypt's #1 Mirror Sneaker Store</span>
+    <span>💳 Cash on Delivery &amp; InstaPay Accepted</span>
+    <span>📦 Fast Delivery to All Egyptian Governorates</span>
+    <span>🔥 30% OFF + Free Shipping Available — Limited Time</span>
+    <span>🇪🇬 Egypt's #1 Mirror Sneaker Store</span>
+    <span>💳 Cash on Delivery &amp; InstaPay Accepted</span>
+    <span>📦 Fast Delivery to All Egyptian Governorates</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════ -->
+<nav class="px-4 md:px-8 py-3">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+    <div class="flex items-center gap-4">
+      <button onclick="toggleSidebar()" class="flex flex-col gap-1.5 p-2 hover:opacity-70 transition" aria-label="Menu">
+        <span class="w-5 h-0.5 bg-white block"></span>
+        <span class="w-5 h-0.5 bg-white block"></span>
+        <span class="w-3 h-0.5 bg-white block"></span>
+      </button>
+      <button onclick="goHome()" class="nav-logo">MIRROR<span>KIX</span></button>
+    </div>
+    <div class="hidden md:flex items-center gap-6">
+      <button onclick="showCategory('men')" class="text-sm font-cond font-700 tracking-widest uppercase text-gray-400 hover:text-white transition">Men</button>
+      <button onclick="showCategory('women')" class="text-sm font-cond font-700 tracking-widest uppercase text-gray-400 hover:text-white transition">Women</button>
+      <button onclick="showCategory('kids')" class="text-sm font-cond font-700 tracking-widest uppercase text-gray-400 hover:text-white transition">Kids</button>
+      <button onclick="showCategory('all')" class="text-sm font-cond font-700 tracking-widest uppercase text-red-500 hover:text-red-400 transition">Sale 🔥</button>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="toggleSearch()" class="p-2 hover:text-red-500 transition text-gray-400" aria-label="Search">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1 0 4.35 4.35a7.5 7.5 0 0 0 12.3 12.3z"/></svg>
+      </button>
+      <!-- Login/Account button -->
+      <button onclick="handleAuthNavClick()" id="nav-auth-btn" class="hidden md:flex items-center gap-1.5 text-xs font-cond font-700 tracking-wider uppercase text-gray-400 hover:text-white transition px-2 py-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z"/></svg>
+        <span id="nav-user-label">Login</span>
+      </button>
+      <button onclick="showView('cart')" class="relative p-2 hover:text-red-500 transition text-gray-400" aria-label="Cart">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.4 7h12.8M7 13L5.4 5M17 21a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-8 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+        <span id="cart-count" class="absolute -top-0.5 -right-0.5 bg-red-600 text-white text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+      </button>
+    </div>
+  </div>
+  <!-- Search bar -->
+  <div id="search-bar" class="hidden max-w-7xl mx-auto pb-3 pt-2">
+    <input id="search-input" type="text" placeholder="Search sneakers, brands…" class="auth-input" oninput="doSearch(this.value)"/>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     SIDEBAR
+════════════════════════════════════════════════ -->
+<div id="sb-overlay" onclick="closeSidebar()"></div>
+<aside id="sidebar">
+  <div class="flex items-center justify-between px-5 py-4 border-b border-gray-800/60">
+    <span class="nav-logo text-2xl">MIRROR<span style="color:#E8132A">KIX</span></span>
+    <button onclick="closeSidebar()" class="text-gray-500 hover:text-white transition" aria-label="Close">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="p-5" id="sb-content"></div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════
+     TOAST
+════════════════════════════════════════════════ -->
+<div id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════
+     AUTH GATE MODAL  (checkout gatekeeper)
+════════════════════════════════════════════════ -->
+<div id="auth-gate-overlay">
+  <div id="auth-gate-box">
+    <!-- Red accent strip -->
+    <div class="h-1 bg-red-600 w-full"></div>
+    <div class="p-8">
+      <!-- Tab row -->
+      <div class="flex border-b border-gray-800 mb-8">
+        <button onclick="gateTab('login')" id="gate-tab-login" class="flex-1 pb-3 font-cond font-700 text-sm tracking-widest uppercase border-b-2 border-red-600 text-white transition">Login</button>
+        <button onclick="gateTab('signup')" id="gate-tab-signup" class="flex-1 pb-3 font-cond font-700 text-sm tracking-widest uppercase border-b-2 border-transparent text-gray-500 transition">Create Account</button>
+      </div>
+
+      <!-- Login form -->
+      <div id="gate-form-login">
+        <div class="mb-6">
+          <h2 class="font-display text-4xl text-white mb-1">ALMOST THERE</h2>
+          <p class="text-gray-500 text-sm">Sign in to complete your purchase.</p>
+        </div>
+        <div class="space-y-4">
+          <input type="email" placeholder="Email address" class="auth-input" id="gate-email"/>
+          <input type="password" placeholder="Password" class="auth-input" id="gate-pass"/>
+          <button onclick="doGateLogin()" class="btn-primary w-full justify-center py-4 text-base">Login &amp; Continue</button>
+        </div>
+        <p class="text-center text-gray-600 text-sm mt-5">
+          No account? <button onclick="gateTab('signup')" class="text-red-500 hover:underline">Create one free</button>
+        </p>
+      </div>
+
+      <!-- Signup form -->
+      <div id="gate-form-signup" class="hidden">
+        <div class="mb-6">
+          <h2 class="font-display text-4xl text-white mb-1">CREATE ACCOUNT</h2>
+          <p class="text-gray-500 text-sm">Join Mirror Kix and complete your order.</p>
+        </div>
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-3">
+            <input type="text" placeholder="First name" class="auth-input" id="gate-fname"/>
+            <input type="text" placeholder="Last name" class="auth-input" id="gate-lname"/>
+          </div>
+          <input type="email" placeholder="Email address" class="auth-input" id="gate-email2"/>
+          <input type="tel" placeholder="Phone (01XXXXXXXXX)" class="auth-input" id="gate-phone"/>
+          <input type="password" placeholder="Create password" class="auth-input" id="gate-pass2"/>
+          <button onclick="doGateSignup()" class="btn-primary w-full justify-center py-4 text-base">Create Account &amp; Continue</button>
+        </div>
+        <p class="text-center text-gray-600 text-sm mt-5">
+          Already have an account? <button onclick="gateTab('login')" class="text-red-500 hover:underline">Login</button>
+        </p>
+      </div>
+
+      <button onclick="closeAuthGate()" class="absolute top-4 right-4 w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition text-gray-400">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     VIEWS
+════════════════════════════════════════════════ -->
+<div id="app">
+
+<!-- ─────────────── HOME ─────────────── -->
+<div id="view-home" class="view">
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-80 h-80 md:w-[560px] md:h-[560px] rounded-full" style="background:radial-gradient(circle,rgba(232,19,42,.16) 0%,transparent 70%)"></div>
+    <div class="relative max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col md:flex-row items-center gap-8">
+      <div class="flex-1 z-10">
+        <div class="hero-badge"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>New Collection 2025</div>
+        <h1 class="hero-title">STEP<br/>INTO THE<br/><em>MIRROR</em></h1>
+        <p class="text-gray-400 max-w-md mt-5 mb-9 text-base leading-relaxed">Premium mirror sneakers inspired by the world's greatest brands. Exclusively in Egypt.</p>
+        <div class="flex flex-wrap gap-4">
+          <button onclick="showCategory('all')" class="btn-primary">Shop Now <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></button>
+          <button onclick="scrollToDeals()" class="btn-outline">Best Deals</button>
+        </div>
+        <div class="flex items-center gap-8 mt-10">
+          <div><div class="font-display text-3xl text-red-500">500+</div><div class="text-xs text-gray-500 font-cond tracking-wider uppercase">Styles</div></div>
+          <div class="w-px h-10 bg-gray-800"></div>
+          <div><div class="font-display text-3xl">50K+</div><div class="text-xs text-gray-500 font-cond tracking-wider uppercase">Happy Customers</div></div>
+          <div class="w-px h-10 bg-gray-800"></div>
+          <div><div class="font-display text-3xl">8</div><div class="text-xs text-gray-500 font-cond tracking-wider uppercase">Top Brands</div></div>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-center items-center relative">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-64 h-64 md:w-96 md:h-96 rounded-full border border-red-500/20" style="animation:floatY 6s ease-in-out infinite reverse"></div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&q=90&auto=format" alt="Hero Sneaker" class="floating-shoe glow-red w-64 md:w-[380px] relative z-10 rounded-2xl object-cover" style="max-height:340px;object-position:center"/>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <span class="text-xs font-cond tracking-widest uppercase">Scroll</span>
+      <div class="w-px h-8 bg-white animate-bounce"></div>
+    </div>
+  </section>
+
+  <!-- BRANDS BAR -->
+  <section class="py-12 px-4 md:px-8 border-y border-gray-900/60">
+    <div class="max-w-7xl mx-auto">
+      <p class="text-center section-label mb-6">Shop by Brand</p>
+      <div class="flex gap-3 overflow-x-auto no-scroll pb-1 flex-wrap justify-start md:justify-center">
+        <button onclick="filterByBrand('all')" class="brand-pill active" id="bp-all" data-brand="all"><span class="text-2xl">👟</span><span>All</span></button>
+        <button onclick="filterByBrand('Nike')" class="brand-pill" id="bp-Nike" data-brand="Nike"><span class="text-xl font-bold">✔</span><span>Nike</span></button>
+        <button onclick="filterByBrand('Adidas')" class="brand-pill" id="bp-Adidas" data-brand="Adidas"><span class="text-xl">◈</span><span>Adidas</span></button>
+        <button onclick="filterByBrand('Jordan')" class="brand-pill" id="bp-Jordan" data-brand="Jordan"><span class="text-xl">✦</span><span>Jordan</span></button>
+        <button onclick="filterByBrand('New Balance')" class="brand-pill" id="bp-NB" data-brand="New Balance"><span class="text-xl font-black">N</span><span>New Balance</span></button>
+        <button onclick="filterByBrand('Puma')" class="brand-pill" id="bp-Puma" data-brand="Puma"><span class="text-xl">⚡</span><span>Puma</span></button>
+        <button onclick="filterByBrand('Converse')" class="brand-pill" id="bp-Converse" data-brand="Converse"><span class="text-xl">★</span><span>Converse</span></button>
+        <button onclick="filterByBrand('Vans')" class="brand-pill" id="bp-Vans" data-brand="Vans"><span class="text-xl">▣</span><span>Vans</span></button>
+        <button onclick="filterByBrand('ASICS')" class="brand-pill" id="bp-ASICS" data-brand="ASICS"><span class="text-xl">◎</span><span>ASICS</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEALS SECTION -->
+  <section class="py-16 px-4 md:px-8" id="deals-section">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+        <div>
+          <p class="section-label">Hot Right Now</p>
+          <h2 class="section-title">BEST DEALS</h2>
+        </div>
+        <div class="filter-bar">
+          <select class="filter-select" onchange="sortHome(this.value)">
+            <option value="">Sort By</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="discount">Most Discounted</option>
+          </select>
+        </div>
+      </div>
+      <div id="home-products" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+      <div class="text-center mt-10">
+        <button onclick="showCategory('all')" class="btn-outline">View All Products</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <section class="py-6 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-2xl overflow-hidden relative flex items-center" style="background:linear-gradient(135deg,#180205,#2d0508);min-height:280px;border:1px solid rgba(232,19,42,.28)">
+        <div class="absolute inset-0" style="background:url(https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1400&q=80&auto=format) center/cover no-repeat;opacity:.2"></div>
+        <div class="relative z-10 p-8 md:p-14 max-w-xl">
+          <p class="section-label mb-3">Limited Offer</p>
+          <h2 class="font-display text-5xl md:text-7xl text-white leading-none mb-4">30% OFF<br/>EVERYTHING</h2>
+          <p class="text-gray-300 mb-6 text-sm">Use code <span class="bg-red-600 text-white px-2 py-0.5 rounded font-cond font-700 tracking-wider">MIRROR30</span> at checkout.</p>
+          <button onclick="showCategory('all')" class="btn-primary">Grab the Deal</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="py-16 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <p class="section-label mb-2">Browse</p>
+      <h2 class="section-title mb-10">CATEGORIES</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <button onclick="showCategory('men')" class="relative overflow-hidden rounded-2xl group text-left" style="height:360px">
+          <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=600&q=80&auto=format" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105" alt="Men"/>
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.05) 60%)"></div>
+          <div class="absolute bottom-0 left-0 p-6"><h3 class="font-display text-4xl text-white">MEN</h3><p class="text-gray-400 text-sm font-cond tracking-wider uppercase mt-1">Shop Collection →</p></div>
+        </button>
+        <button onclick="showCategory('women')" class="relative overflow-hidden rounded-2xl group text-left" style="height:360px">
+          <img src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=600&q=80&auto=format" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105" alt="Women"/>
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.05) 60%)"></div>
+          <div class="absolute bottom-0 left-0 p-6"><h3 class="font-display text-4xl text-white">WOMEN</h3><p class="text-gray-400 text-sm font-cond tracking-wider uppercase mt-1">Shop Collection →</p></div>
+        </button>
+        <button onclick="showCategory('kids')" class="relative overflow-hidden rounded-2xl group text-left" style="height:360px">
+          <img src="https://images.unsplash.com/photo-1571945192073-f89e40f31d98?w=600&q=80&auto=format" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105" alt="Kids"/>
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.05) 60%)"></div>
+          <div class="absolute bottom-0 left-0 p-6"><h3 class="font-display text-4xl text-white">KIDS</h3><p class="text-gray-400 text-sm font-cond tracking-wider uppercase mt-1">Shop Collection →</p></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section class="py-10 pb-20 px-4 md:px-8 bg-gradient-to-b from-transparent to-gray-950/50">
+    <div class="max-w-7xl mx-auto">
+      <p class="section-label mb-2">Just Dropped</p>
+      <h2 class="section-title mb-10">NEW ARRIVALS</h2>
+      <div id="new-arrivals-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black border-t border-gray-900 py-14 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <div class="nav-logo text-3xl mb-4">MIRROR<span>KIX</span></div>
+        <p class="text-gray-500 text-sm leading-relaxed">Egypt's #1 destination for premium mirror sneakers inspired by the world's best brands.</p>
+        <div class="flex gap-3 mt-5">
+          <a href="#" class="w-9 h-9 bg-gray-900 rounded-lg flex items-center justify-center hover:bg-red-600 transition text-xs font-bold">f</a>
+          <a href="#" class="w-9 h-9 bg-gray-900 rounded-lg flex items-center justify-center hover:bg-red-600 transition text-xs font-bold">ig</a>
+          <a href="#" class="w-9 h-9 bg-gray-900 rounded-lg flex items-center justify-center hover:bg-red-600 transition text-xs font-bold">tw</a>
+          <a href="#" class="w-9 h-9 bg-gray-900 rounded-lg flex items-center justify-center hover:bg-red-600 transition text-xs font-bold">yt</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-cond font-700 tracking-widest uppercase text-xs text-gray-500 mb-4">Shop</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><button onclick="showCategory('men')" class="hover:text-white transition">Men's Sneakers</button></li>
+          <li><button onclick="showCategory('women')" class="hover:text-white transition">Women's Sneakers</button></li>
+          <li><button onclick="showCategory('kids')" class="hover:text-white transition">Kids' Sneakers</button></li>
+          <li><button onclick="showCategory('all')" class="hover:text-white transition">Sale</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-cond font-700 tracking-widest uppercase text-xs text-gray-500 mb-4">Brands</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li>Nike</li><li>Adidas</li><li>Air Jordan</li><li>New Balance</li><li>Puma</li><li>Converse</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-cond font-700 tracking-widest uppercase text-xs text-gray-500 mb-4">Contact</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li>📍 Cairo, Egypt</li>
+          <li>📱 WhatsApp: 01012345678</li>
+          <li>✉️ info@mirrorkix.eg</li>
+          <li>⏰ Daily 10AM – 10PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-900 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-700">
+      <p>© 2025 Mirror Kix. All rights reserved.</p>
+      <p>Designed for Egypt 🇪🇬</p>
+    </div>
+  </footer>
+</div><!-- /view-home -->
+
+<!-- ─────────────── CATEGORY ─────────────── -->
+<div id="view-category" class="view min-h-screen">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-10">
+    <div class="flex items-center gap-3 mb-2 text-xs font-cond tracking-widest uppercase text-gray-600">
+      <button onclick="goHome()" class="hover:text-white transition">Home</button>
+      <span>/</span>
+      <span id="cat-breadcrumb" class="text-white"></span>
+    </div>
+    <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
+      <h1 id="cat-title" class="section-title"></h1>
+      <div class="filter-bar">
+        <select class="filter-select" onchange="filterCat('sort',this.value)" id="cat-sort"><option value="">Sort By</option><option value="price-asc">Price: Low → High</option><option value="price-desc">Price: High → Low</option><option value="discount">Most Discounted</option></select>
+        <select class="filter-select" onchange="filterCat('brand',this.value)" id="cat-brand"><option value="">All Brands</option><option>Nike</option><option>Adidas</option><option>Jordan</option><option>New Balance</option><option>Puma</option><option>Converse</option><option>Vans</option><option>ASICS</option></select>
+        <select class="filter-select" onchange="filterCat('size',this.value)" id="cat-size"><option value="">All Sizes</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option></select>
+      </div>
+    </div>
+    <div id="cat-products" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+  </div>
+</div>
+
+<!-- ─────────────── CART ─────────────── -->
+<div id="view-cart" class="view min-h-screen">
+  <div class="max-w-5xl mx-auto px-4 md:px-8 py-10">
+    <div class="flex items-center gap-3 mb-8">
+      <button onclick="goHome()" class="text-gray-500 hover:text-white transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <h1 class="font-display text-4xl">YOUR CART</h1>
+      <span id="cart-item-count" class="ml-2 text-gray-500 font-cond font-700 text-sm tracking-wider uppercase"></span>
+    </div>
+    <div id="cart-empty" class="hidden text-center py-24">
+      <div class="text-7xl mb-4">🛒</div>
+      <h3 class="font-display text-3xl mb-2">Your cart is empty</h3>
+      <p class="text-gray-500 mb-6">Looks like you haven't added any sneakers yet.</p>
+      <button onclick="showCategory('all')" class="btn-primary">Shop Now</button>
+    </div>
+    <div id="cart-content" class="grid md:grid-cols-3 gap-8">
+      <div class="md:col-span-2">
+        <div id="cart-items"></div>
+      </div>
+      <div>
+        <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 sticky top-24">
+          <h3 class="font-display text-2xl mb-5">ORDER SUMMARY</h3>
+          <div class="space-y-3 text-sm mb-5">
+            <div class="flex justify-between text-gray-400"><span>Subtotal</span><span id="sum-sub">0 EGP</span></div>
+            <div class="flex justify-between text-gray-400"><span>Discount (30%)</span><span id="sum-disc" class="text-red-500">−0 EGP</span></div>
+            <div class="flex justify-between text-gray-400"><span>Shipping</span><span class="text-green-400">Free</span></div>
+            <div class="border-t border-gray-700 pt-3 flex justify-between font-700 text-base"><span>Total</span><span id="sum-total" class="text-red-500 font-display text-xl">0 EGP</span></div>
+          </div>
+          <button onclick="proceedToCheckout()" class="btn-primary w-full justify-center text-base py-4">Proceed to Checkout</button>
+          <button onclick="showCategory('all')" class="btn-outline w-full justify-center mt-3">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────── CHECKOUT ─────────────── -->
+<div id="view-checkout" class="view min-h-screen">
+  <div class="max-w-4xl mx-auto px-4 md:px-8 py-10">
+    <!-- Steps -->
+    <div class="flex items-center max-w-sm mx-auto mb-12">
+      <div class="step-dot active" id="step1">1</div>
+      <div class="step-line"><div class="step-line-fill" id="line1" style="width:0"></div></div>
+      <div class="step-dot" id="step2">2</div>
+      <div class="step-line"><div class="step-line-fill" id="line2" style="width:0"></div></div>
+      <div class="step-dot" id="step3">3</div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="md:col-span-2">
+        <!-- Step 1: Info -->
+        <div id="co-step1">
+          <p class="section-label mb-1">Step 1 of 3</p>
+          <h1 class="font-display text-4xl mb-8">YOUR DETAILS</h1>
+          <div class="grid md:grid-cols-2 gap-5">
+            <div><label class="block text-xs font-cond tracking-widest uppercase text-gray-500 mb-2">First Name</label><input type="text" placeholder="Ahmed" class="auth-input" id="co-fname"/></div>
+            <div><label class="block text-xs font-cond tracking-widest uppercase text-gray-500 mb-2">Last Name</label><input type="text" placeholder="Hassan" class="auth-input" id="co-lname"/></div>
+            <div><label class="block text-xs font-cond tracking-widest uppercase text-gray-500 mb-2">Phone</label><input type="tel" placeholder="010XXXXXXXX" class="auth-input" id="co-phone"/></div>
+            <div><label class="block text-xs font-cond tracking-widest uppercase text-gray-500 mb-2">Email</label><input type="email" placeholder="ahmed@email.com" class="auth-input" id="co-email"/></div>
+            <div class="md:col-span-2"><label class="block text-xs font-cond tracking-widest uppercase text-gray-500 mb-2">Street Address</label><input type="text" placeholder="Building, Street, Area" class="auth-input" id="co-addr"/></div>
+            <div>
+              <label class="block text-xs font-cond tracking-widest uppercase text-gray-500 mb-2">City</label>
+              <select class="filter-select w-full" id="co-city">
+                <option>Cairo</option><option>Giza</option><option>Alexandria</option><option>Mansoura</option><option>Tanta</option><option>Assiut</option><option>Aswan</option><option>Luxor</option><option>Suez</option><option>Ismailia</option>
+              </select>
+            </div>
+            <div><label class="block text-xs font-cond tracking-widest uppercase text-gray-500 mb-2">Postal Code</label><input type="text" placeholder="XXXXX" class="auth-input" id="co-postal"/></div>
+          </div>
+          <button onclick="coNext(2)" class="btn-primary mt-8 px-10">Continue to Shipping</button>
+        </div>
+        <!-- Step 2: Shipping & Payment -->
+        <div id="co-step2" class="hidden">
+          <p class="section-label mb-1">Step 2 of 3</p>
+          <h1 class="font-display text-4xl mb-8">SHIPPING &amp; PAYMENT</h1>
+          <div class="mb-8">
+            <p class="text-xs font-cond tracking-widest uppercase text-gray-500 mb-4">Delivery Method</p>
+            <div class="bg-gray-900/60 border border-red-500/40 rounded-xl p-5 flex items-start gap-4">
+              <div class="w-5 h-5 rounded-full border-2 border-red-500 flex items-center justify-center mt-0.5 flex-shrink-0"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div></div>
+              <div>
+                <p class="font-cond font-700 tracking-wider uppercase text-sm mb-1">Standard Delivery</p>
+                <p class="text-gray-400 text-sm">3–5 business days · <span class="text-green-400 font-700">Free</span></p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs font-cond tracking-widest uppercase text-gray-500 mb-4">Payment Method</p>
+          <div class="grid md:grid-cols-2 gap-4 mb-6">
+            <button onclick="selectPayment('cod')" id="pay-cod" class="bg-gray-900/60 border-2 border-red-500 rounded-xl p-5 text-left transition">
+              <p class="font-cond font-700 tracking-wider uppercase text-sm mb-1">💵 Cash on Delivery</p>
+              <p class="text-gray-400 text-sm">Pay when your order arrives.</p>
+            </button>
+            <button onclick="selectPayment('instapay')" id="pay-instapay" class="bg-gray-900/60 border-2 border-gray-700 rounded-xl p-5 text-left transition hover:border-gray-500">
+              <p class="font-cond font-700 tracking-wider uppercase text-sm mb-1">💳 InstaPay</p>
+              <p class="text-gray-400 text-sm">Instant transfer — fastest option.</p>
+            </button>
+          </div>
+          <div id="instapay-info" class="hidden bg-red-950/60 border border-red-800/60 rounded-xl p-5 mb-6">
+            <p class="font-cond font-700 tracking-wider uppercase text-xs text-red-400 mb-4">InstaPay Transfer Details</p>
+            <div class="flex items-center gap-4 mb-3">
+              <span class="text-3xl">📱</span>
+              <div>
+                <p class="text-white font-display text-2xl tracking-widest">01012345678</p>
+                <p class="text-gray-400 text-xs mt-0.5">Account name: Mirror Kix Egypt</p>
+              </div>
+            </div>
+            <div class="border-t border-red-900/60 pt-3 flex items-center gap-2 text-sm text-gray-300">
+              <span class="text-green-400">📲</span> Same number is available on WhatsApp for support
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <button onclick="coBack(1)" class="btn-outline">← Back</button>
+            <button onclick="coNext(3)" class="btn-primary">Review Order →</button>
+          </div>
+        </div>
+        <!-- Step 3: Review -->
+        <div id="co-step3" class="hidden">
+          <p class="section-label mb-1">Step 3 of 3</p>
+          <h1 class="font-display text-4xl mb-8">REVIEW ORDER</h1>
+          <div id="co-review-items" class="space-y-3 mb-6"></div>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5 mb-5">
+            <p class="text-xs font-cond tracking-widest uppercase text-gray-500 mb-2">Delivery to</p>
+            <p class="text-white text-sm" id="co-delivery-text"></p>
+          </div>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5 mb-8">
+            <div class="flex justify-between text-sm text-gray-400 mb-2"><span>Subtotal</span><span id="co-sub"></span></div>
+            <div class="flex justify-between text-sm text-red-400 mb-2"><span>Discount (30%)</span><span id="co-disc"></span></div>
+            <div class="flex justify-between font-700 text-base border-t border-gray-700 pt-3"><span>Total</span><span id="co-total" class="font-display text-xl text-red-500"></span></div>
+          </div>
+          <div class="flex gap-4">
+            <button onclick="coBack(2)" class="btn-outline">← Back</button>
+            <button onclick="placeOrder()" class="btn-primary text-base py-4 px-10">Place Order 🚀</button>
+          </div>
+        </div>
+      </div>
+      <!-- Mini cart sidebar -->
+      <div>
+        <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-5 sticky top-24">
+          <p class="text-xs font-cond tracking-widest uppercase text-gray-500 mb-4">Your Items</p>
+          <div id="co-mini-cart" class="space-y-3"></div>
+          <div class="border-t border-gray-800 mt-4 pt-4 flex justify-between">
+            <span class="text-sm text-gray-400">Total</span>
+            <span id="co-sidebar-total" class="font-display text-lg text-red-500"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────── CONFIRMATION ─────────────── -->
+<div id="view-confirmation" class="view min-h-screen flex items-center justify-center px-4 py-16">
+  <div class="text-center max-w-lg w-full relative">
+    <div id="confetti-wrap" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+    <div class="pop-in text-8xl mb-6 inline-block">🎉</div>
+    <h1 class="font-display text-5xl md:text-7xl text-white mb-3">ORDER<br/>CONFIRMED!</h1>
+    <p class="text-gray-400 mb-8 text-sm">Thank you for shopping with Mirror Kix, <span id="conf-name" class="text-white font-700"></span>!</p>
+    <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 mb-6 text-left">
+      <div class="flex justify-between text-sm mb-3"><span class="text-gray-500">Order Number</span><span id="conf-order-num" class="font-cond font-700 tracking-wider text-white"></span></div>
+      <div class="flex justify-between text-sm mb-3"><span class="text-gray-500">Total Paid</span><span id="conf-total" class="text-red-500 font-display text-xl"></span></div>
+      <div class="flex justify-between text-sm mb-3"><span class="text-gray-500">Payment</span><span id="conf-payment" class="text-white font-cond font-700 tracking-wider uppercase text-xs"></span></div>
+      <div class="flex justify-between text-sm"><span class="text-gray-500">Estimated Delivery</span><span class="text-green-400 font-cond font-700">3–5 Business Days</span></div>
+    </div>
+    <!-- Gift card -->
+    <div class="bg-gradient-to-br from-red-950 to-red-900 border border-red-700/60 rounded-2xl p-6 mb-8">
+      <div class="text-4xl mb-3">🎁</div>
+      <h3 class="font-display text-2xl text-white mb-1">YOU WON A GIFT!</h3>
+      <p class="text-red-300 text-sm mb-4">10% discount on your next order</p>
+      <div class="bg-red-800/80 border border-red-600/40 rounded-xl px-6 py-3 inline-block">
+        <span class="font-display text-2xl text-white tracking-widest">MIRROR10</span>
+      </div>
+    </div>
+    <button onclick="goHome()" class="btn-primary text-base py-4 px-12 mx-auto">Continue Shopping</button>
+  </div>
+</div>
+
+</div><!-- /app -->
+
+<!-- ═══════════════════════════════════════════════
+     PRODUCT MODAL
+════════════════════════════════════════════════ -->
+<div id="modal-overlay" onclick="closeModal(event)">
+  <div id="modal-box">
+    <button onclick="closeModalBtn()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition text-white" aria-label="Close">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div id="modal-content" class="grid md:grid-cols-2 gap-0"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════ -->
+<script>
+// ─────────────────────────────────────────────
+// DATA
+// ─────────────────────────────────────────────
+const IMGS = {
+  Nike:['https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80&auto=format','https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600&q=80&auto=format','https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=600&q=80&auto=format','https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&q=80&auto=format'],
+  Adidas:['https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&q=80&auto=format','https://images.unsplash.com/photo-1571945192073-f89e40f31d98?w=600&q=80&auto=format','https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=600&q=80&auto=format'],
+  Jordan:['https://images.unsplash.com/photo-1556906781-9a412961a28c?w=600&q=80&auto=format','https://images.unsplash.com/photo-1559060680-4e12f5ad8e42?w=600&q=80&auto=format'],
+  'New Balance':['https://images.unsplash.com/photo-1539185441755-769473a23570?w=600&q=80&auto=format','https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=600&q=80&auto=format'],
+  Puma:['https://images.unsplash.com/photo-1605408499391-6368c628ef42?w=600&q=80&auto=format','https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=600&q=80&auto=format'],
+  Converse:['https://images.unsplash.com/photo-1463100099107-aa0980c362e6?w=600&q=80&auto=format','https://images.unsplash.com/photo-1514989771522-458c9b6c035a?w=600&q=80&auto=format'],
+  Vans:['https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&q=80&auto=format','https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=600&q=80&auto=format'],
+  ASICS:['https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=600&q=80&auto=format','https://images.unsplash.com/photo-1624008897024-68e14b1ac4a2?w=600&q=80&auto=format']
+};
+function img(b,i){const a=IMGS[b]||IMGS.Nike;return a[i%a.length];}
+const ALL_SIZES=['38','39','40','41','42','43','44','45'];
+function rSizes(){return ALL_SIZES.filter(()=>Math.random()>.3);}
+
+const PRODUCTS=[
+  {id:1,name:'Air Max Mirror 270',brand:'Nike',cat:'men',price:3200,discount:30,badge:'sale',desc:'Inspired by the legendary Air Max silhouette, the Mirror 270 delivers all-day comfort with a bold foam heel unit and breathable mesh upper.',sizes:rSizes(),img:img('Nike',0),imgs:[img('Nike',0),img('Nike',1),img('Nike',2)]},
+  {id:2,name:'Ultraboost Mirror 22',brand:'Adidas',cat:'women',price:2800,discount:30,badge:'sale',desc:'Adidas Ultraboost DNA with an exclusive Mirror finish. Responsive Boost midsole and Primeknit+ upper.',sizes:rSizes(),img:img('Adidas',0),imgs:[img('Adidas',0),img('Adidas',1)]},
+  {id:3,name:'AJ1 Mirror High OG',brand:'Jordan',cat:'men',price:4500,discount:30,badge:'sale',desc:'The iconic Air Jordan 1 High reimagined in Mirror Kix exclusive colorway. Full-grain leather upper with Air cushioning.',sizes:rSizes(),img:img('Jordan',0),imgs:[img('Jordan',0),img('Jordan',1)]},
+  {id:4,name:'990v5 Mirror Edition',brand:'New Balance',cat:'men',price:3600,discount:25,badge:'sale',desc:'The heritage 990 series updated with premium suede and mesh. ENCAP midsole technology for superior comfort.',sizes:rSizes(),img:img('New Balance',0),imgs:[img('New Balance',0),img('New Balance',1)]},
+  {id:5,name:'RS-X Mirror Surge',brand:'Puma',cat:'women',price:1950,discount:30,badge:'sale',desc:'Oversized RS-X silhouette with bold multi-layer color-blocking. Thick foam sole and mesh upper.',sizes:rSizes(),img:img('Puma',0),imgs:[img('Puma',0),img('Puma',1)]},
+  {id:6,name:'Chuck 70 Mirror Ox',brand:'Converse',cat:'kids',price:1200,discount:20,badge:'sale',desc:'The classic Chuck 70 elevated with premium canvas and Mirror Kix exclusive graphics. Ortholite insole.',sizes:rSizes(),img:img('Converse',0),imgs:[img('Converse',0),img('Converse',1)]},
+  {id:7,name:'Air Force Mirror Low',brand:'Nike',cat:'men',price:2600,discount:0,badge:'new',desc:'AF1 Low in a clean Mirror Kix exclusive white-on-white colorway with subtle red detailing. Classic Nike Air cushioning.',sizes:rSizes(),img:img('Nike',3),imgs:[img('Nike',3),img('Nike',0)]},
+  {id:8,name:'Stan Smith Mirror',brand:'Adidas',cat:'women',price:1700,discount:0,badge:'new',desc:'Adidas Stan Smith in premium leather with Mirror Kix co-branded heel tab. Timeless silhouette for everyday wear.',sizes:rSizes(),img:img('Adidas',2),imgs:[img('Adidas',2),img('Adidas',0)]},
+  {id:9,name:'574 Mirror Classics',brand:'New Balance',cat:'women',price:2200,discount:0,badge:'new',desc:'The 574 in a refreshed heritage palette with ENCAP midsole. Pigskin and mesh upper for all-day comfort.',sizes:rSizes(),img:img('New Balance',1),imgs:[img('New Balance',1),img('New Balance',0)]},
+  {id:10,name:'Old Skool Mirror Pro',brand:'Vans',cat:'kids',price:950,discount:0,badge:'new',desc:'Classic Old Skool silhouette with waffle outsole. Mirror Kix exclusive sidestripe in signature red.',sizes:rSizes(),img:img('Vans',0),imgs:[img('Vans',0),img('Vans',1)]},
+  {id:11,name:'Gel-Nimbus Mirror 25',brand:'ASICS',cat:'men',price:3400,discount:0,badge:'new',desc:'ASICS running technology with Mirror Kix premium upper. FF BLAST+ cushioning for maximum energy return.',sizes:rSizes(),img:img('ASICS',0),imgs:[img('ASICS',0),img('ASICS',1)]},
+  {id:12,name:'AJ4 Mirror Retro',brand:'Jordan',cat:'men',price:5200,discount:0,badge:'new',desc:'Air Jordan 4 Retro in a rare Mirror Kix exclusive. Visible Air unit and mesh netting on the upper.',sizes:rSizes(),img:img('Jordan',1),imgs:[img('Jordan',1),img('Jordan',0)]},
+  {id:13,name:'Era Mirror 59',brand:'Vans',cat:'women',price:880,discount:0,badge:'new',desc:'Vans Era with mirror-finish canvas and signature waffle outsole. A skate icon for everyday life.',sizes:rSizes(),img:img('Vans',1),imgs:[img('Vans',1),img('Vans',0)]},
+  {id:14,name:'Suede Mirror Classic',brand:'Puma',cat:'kids',price:1100,discount:15,badge:'sale',desc:'PUMA Suede in a vibrant Mirror Kix colorway. Soft suede upper and PUMA foam sole.',sizes:rSizes(),img:img('Puma',1),imgs:[img('Puma',1),img('Puma',0)]},
+  {id:15,name:'Gel-Kayano Mirror 30',brand:'ASICS',cat:'women',price:3100,discount:0,badge:'new',desc:'Stability running shoe with Dynamic DuoMax support. Engineered mesh upper with mirror-pattern accents.',sizes:rSizes(),img:img('ASICS',1),imgs:[img('ASICS',1),img('ASICS',0)]},
+  {id:16,name:'React Infinity Mirror',brand:'Nike',cat:'women',price:2900,discount:20,badge:'sale',desc:'Nike React foam for supreme cushioning. Engineered Flyknit upper that hugs your foot perfectly.',sizes:rSizes(),img:img('Nike',1),imgs:[img('Nike',1),img('Nike',2)]},
+];
+
+// ─────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────
+let cart=[];
+let currentUser=null;       // null = guest
+let selectedPayment='cod';
+let catFilters={sort:'',brand:'',size:'',gender:''};
+let activeBrand='all';
+let selectedSize='';
+let currentProduct=null;
+
+// ─────────────────────────────────────────────
+// VIEW SWITCHER
+// ─────────────────────────────────────────────
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='cart') renderCart();
+  if(id==='home') renderHomeProducts();
+  if(id==='checkout') renderCheckoutSidebar();
+}
+function goHome(){showView('home');}
+
+// ─────────────────────────────────────────────
+// NAV AUTH BUTTON  (login or show account info)
+// ─────────────────────────────────────────────
+function handleAuthNavClick(){
+  if(currentUser){
+    showToast(`👋 Hello, ${currentUser.name}!`);
+  } else {
+    openAuthGate(null); // null = no post-login destination, just login
+  }
+}
+
+// ─────────────────────────────────────────────
+// AUTH GATE MODAL
+// ─────────────────────────────────────────────
+let _afterAuthCallback=null;
+
+function openAuthGate(callback){
+  _afterAuthCallback=callback;
+  gateTab('login');
+  document.getElementById('auth-gate-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeAuthGate(){
+  document.getElementById('auth-gate-overlay').classList.remove('show');
+  document.body.style.overflow='';
+  _afterAuthCallback=null;
+}
+function gateTab(t){
+  document.getElementById('gate-form-login').classList.toggle('hidden',t!=='login');
+  document.getElementById('gate-form-signup').classList.toggle('hidden',t!=='signup');
+  const activeClass='flex-1 pb-3 font-cond font-700 text-sm tracking-widest uppercase border-b-2 border-red-600 text-white transition';
+  const idleClass='flex-1 pb-3 font-cond font-700 text-sm tracking-widest uppercase border-b-2 border-transparent text-gray-500 transition';
+  document.getElementById('gate-tab-login').className = t==='login'?activeClass:idleClass;
+  document.getElementById('gate-tab-signup').className = t==='signup'?activeClass:idleClass;
+}
+function _finalizeAuth(name,email){
+  currentUser={name,email};
+  document.getElementById('nav-user-label').textContent=name;
+  document.getElementById('nav-auth-btn').classList.remove('hidden');
+  document.getElementById('nav-auth-btn').classList.add('md:flex');
+  closeAuthGate();
+  showToast(`Welcome, ${name}! 🎉`);
+  if(_afterAuthCallback) { _afterAuthCallback(); _afterAuthCallback=null; }
+}
+function doGateLogin(){
+  const email=document.getElementById('gate-email').value.trim()||'user@mirrorkix.eg';
+  const name=email.split('@')[0]||'Sneakerhead';
+  _finalizeAuth(capitalise(name),email);
+}
+function doGateSignup(){
+  const fname=document.getElementById('gate-fname').value.trim()||'Ahmed';
+  const lname=document.getElementById('gate-lname').value.trim()||'Hassan';
+  const email=document.getElementById('gate-email2').value.trim()||`${fname.toLowerCase()}@email.com`;
+  _finalizeAuth(`${fname} ${lname}`,email);
+}
+function capitalise(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+// ─────────────────────────────────────────────
+// CHECKOUT GATING  — the key change
+// ─────────────────────────────────────────────
+function proceedToCheckout(){
+  if(!cart.length){showToast('Your cart is empty!');return;}
+  if(!currentUser){
+    // Not logged in → open auth gate, then proceed to checkout after
+    openAuthGate(()=>{ prepareCheckout(); showView('checkout'); });
+  } else {
+    prepareCheckout();
+    showView('checkout');
+  }
+}
+function prepareCheckout(){
+  // Pre-fill name from auth if available
+  if(currentUser){
+    const parts=currentUser.name.split(' ');
+    const fnEl=document.getElementById('co-fname');
+    const lnEl=document.getElementById('co-lname');
+    const emEl=document.getElementById('co-email');
+    if(fnEl&&!fnEl.value) fnEl.value=parts[0]||'';
+    if(lnEl&&!lnEl.value) lnEl.value=parts[1]||'';
+    if(emEl&&!emEl.value) emEl.value=currentUser.email||'';
+  }
+  // Reset steps
+  ['co-step1','co-step2','co-step3'].forEach(id=>document.getElementById(id).classList.add('hidden'));
+  document.getElementById('co-step1').classList.remove('hidden');
+  document.getElementById('step1').className='step-dot active';
+  document.getElementById('step2').className='step-dot';
+  document.getElementById('step3').className='step-dot';
+  document.getElementById('line1').style.width='0';
+  document.getElementById('line2').style.width='0';
+  renderCheckoutSidebar();
+}
+function renderCheckoutSidebar(){
+  const el=document.getElementById('co-mini-cart');
+  const totEl=document.getElementById('co-sidebar-total');
+  if(!el||!totEl) return;
+  el.innerHTML=cart.map(c=>`<div class="flex items-center gap-3">
+    <img src="${c.p.img}" class="w-12 h-12 rounded-lg object-cover flex-shrink-0"/>
+    <div class="flex-1 min-w-0">
+      <p class="text-xs text-white truncate">${c.p.name}</p>
+      <p class="text-xs text-gray-500">Size ${c.size} · ×${c.qty}</p>
+    </div>
+    <p class="text-sm font-display text-red-400">${(finalPrice(c.p)*c.qty).toLocaleString()}</p>
+  </div>`).join('');
+  totEl.textContent=cartTotal().toLocaleString()+' EGP';
+}
+
+// ─────────────────────────────────────────────
+// SIDEBAR (nav)
+// ─────────────────────────────────────────────
+function buildSidebar(){
+  const genders=['Men','Women','Kids'];
+  const brands=['Nike','Adidas','Jordan','New Balance','Puma','Converse','Vans','ASICS'];
+  let html='';
+  genders.forEach(g=>{
+    html+=`<div class="mb-5 border-b border-gray-800/50 pb-5">
+      <button onclick="showCategory('${g.toLowerCase()}');closeSidebar()" class="flex items-center justify-between w-full py-1.5 text-xl font-display tracking-wider text-white hover:text-red-500 transition">
+        ${g}
+        <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+      <div class="mt-3 grid grid-cols-2 gap-1">`;
+    brands.forEach(b=>{
+      html+=`<button onclick="showCategoryBrand('${g.toLowerCase()}','${b}');closeSidebar()" class="text-left text-sm font-cond font-600 tracking-wider text-gray-400 hover:text-red-400 transition py-1.5 px-2 rounded hover:bg-gray-800/40">${b}</button>`;
+    });
+    html+=`</div></div>`;
+  });
+  html+=`<div class="mt-2"><button onclick="showCategory('all');closeSidebar()" class="w-full text-center btn-primary justify-center py-3">🔥 All Sale Items</button></div>`;
+  document.getElementById('sb-content').innerHTML=html;
+}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sb-overlay').classList.toggle('show');}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sb-overlay').classList.remove('show');}
+
+// ─────────────────────────────────────────────
+// SEARCH
+// ─────────────────────────────────────────────
+function toggleSearch(){
+  const bar=document.getElementById('search-bar');
+  bar.classList.toggle('hidden');
+  if(!bar.classList.contains('hidden')) document.getElementById('search-input').focus();
+}
+function doSearch(val){
+  if(!val.trim()) return;
+  const results=PRODUCTS.filter(p=>p.name.toLowerCase().includes(val.toLowerCase())||p.brand.toLowerCase().includes(val.toLowerCase()));
+  catFilters={sort:'',brand:'',size:'',gender:''};
+  showView('category');
+  document.getElementById('cat-title').textContent=`Results for "${val}"`;
+  document.getElementById('cat-breadcrumb').textContent='Search';
+  renderProducts(results,'cat-products');
+}
+
+// ─────────────────────────────────────────────
+// HOME PRODUCTS
+// ─────────────────────────────────────────────
+function renderHomeProducts(){
+  let prods=PRODUCTS.filter(p=>p.discount>0);
+  if(activeBrand!=='all') prods=prods.filter(p=>p.brand===activeBrand);
+  renderProducts(prods.slice(0,8),'home-products');
+  let newProds=PRODUCTS.filter(p=>p.badge==='new');
+  if(activeBrand!=='all') newProds=newProds.filter(p=>p.brand===activeBrand);
+  renderProducts(newProds.slice(0,4),'new-arrivals-grid');
+}
+function filterByBrand(brand){
+  activeBrand=brand;
+  document.querySelectorAll('.brand-pill').forEach(b=>b.classList.toggle('active',b.dataset.brand===brand));
+  renderHomeProducts();
+}
+function sortHome(val){
+  let prods=PRODUCTS.filter(p=>p.discount>0);
+  if(activeBrand!=='all') prods=prods.filter(p=>p.brand===activeBrand);
+  renderProducts(sortProds(prods,val).slice(0,8),'home-products');
+}
+function sortProds(arr,val){
+  if(val==='price-asc') return [...arr].sort((a,b)=>a.price-b.price);
+  if(val==='price-desc') return [...arr].sort((a,b)=>b.price-a.price);
+  if(val==='discount') return [...arr].sort((a,b)=>b.discount-a.discount);
+  return arr;
+}
+
+// ─────────────────────────────────────────────
+// CATEGORY
+// ─────────────────────────────────────────────
+function showCategory(gender){
+  catFilters={sort:'',brand:'',size:'',gender:gender==='all'?'':gender};
+  document.getElementById('cat-title').textContent=gender==='all'?'ALL SNEAKERS':gender.toUpperCase()+' SNEAKERS';
+  document.getElementById('cat-breadcrumb').textContent=gender==='all'?'All':gender.charAt(0).toUpperCase()+gender.slice(1);
+  ['cat-sort','cat-brand','cat-size'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  showView('category');
+  applyCatFilters();
+}
+function showCategoryBrand(gender,brand){
+  catFilters={sort:'',brand,size:'',gender};
+  document.getElementById('cat-title').textContent=brand.toUpperCase()+' — '+gender.toUpperCase();
+  document.getElementById('cat-breadcrumb').textContent=brand;
+  showView('category');
+  applyCatFilters();
+}
+function filterCat(type,val){
+  catFilters[type]=val;
+  applyCatFilters();
+}
+function applyCatFilters(){
+  let prods=[...PRODUCTS];
+  if(catFilters.gender) prods=prods.filter(p=>p.cat===catFilters.gender);
+  if(catFilters.brand) prods=prods.filter(p=>p.brand===catFilters.brand);
+  if(catFilters.size) prods=prods.filter(p=>p.sizes.includes(catFilters.size));
+  if(catFilters.sort) prods=sortProds(prods,catFilters.sort);
+  renderProducts(prods,'cat-products');
+}
+
+// ─────────────────────────────────────────────
+// RENDER PRODUCTS
+// ─────────────────────────────────────────────
+function finalPrice(p){return p.discount?Math.round(p.price*(1-p.discount/100)):p.price;}
+function renderProducts(list,containerId){
+  const el=document.getElementById(containerId);
+  if(!el) return;
+  if(!list.length){el.innerHTML=`<div class="col-span-4 text-center py-16 text-gray-500"><div class="text-5xl mb-3">👟</div><p class="font-cond tracking-wider uppercase text-sm">No sneakers found</p></div>`;return;}
+  el.innerHTML=list.map(p=>productCard(p)).join('');
+}
+function productCard(p){
+  const fp=finalPrice(p);
+  return `<div class="product-card" onclick="openProduct(${p.id})">
+    <div class="img-wrap">
+      <img src="${p.img}" alt="${p.name}" loading="lazy"/>
+      ${p.badge==='sale'?`<span class="badge-sale">−${p.discount}%</span>`:p.badge==='new'?'<span class="badge-new">NEW</span>':''}
+      <div class="quick-add">Select Size +</div>
+    </div>
+    <div class="p-4">
+      <p class="text-xs font-cond font-700 tracking-widest uppercase text-red-500 mb-0.5">${p.brand}</p>
+      <p class="text-white font-600 text-sm leading-snug mb-2">${p.name}</p>
+      <div class="flex items-center gap-2">
+        <span class="font-display text-lg text-red-500">${fp.toLocaleString()} EGP</span>
+        ${p.discount?`<span class="text-xs text-gray-600 line-through">${p.price.toLocaleString()}</span>`:''}
+      </div>
+    </div>
+  </div>`;
+}
+
+// ─────────────────────────────────────────────
+// PRODUCT MODAL
+// ─────────────────────────────────────────────
+function openProduct(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  currentProduct=p; selectedSize='';
+  const fp=finalPrice(p);
+  const sizeBtns=ALL_SIZES.map(s=>{
+    const avail=p.sizes.includes(s);
+    return `<button onclick="pickSize('${s}',this)" class="size-btn${avail?'':' out'}" ${avail?'':'disabled'}>${s}</button>`;
+  }).join('');
+  const related=PRODUCTS.filter(x=>x.brand===p.brand&&x.id!==p.id).slice(0,3);
+  document.getElementById('modal-content').innerHTML=`
+    <div class="relative bg-gray-950 rounded-l-2xl overflow-hidden" style="min-height:320px">
+      <img id="modal-main-img" src="${p.imgs[0]}" alt="${p.name}" class="w-full h-full object-cover" style="max-height:540px"/>
+      <div class="absolute bottom-4 left-4 flex gap-2">
+        ${p.imgs.map((im,i)=>`<button onclick="changeImg('${im}',this)" class="w-12 h-12 rounded-lg border-2 overflow-hidden transition ${i===0?'border-red-500':'border-gray-700'}"><img src="${im}" class="w-full h-full object-cover"/></button>`).join('')}
+      </div>
+    </div>
+    <div class="p-6 md:p-8 flex flex-col">
+      <p class="text-red-500 font-cond font-700 tracking-widest uppercase text-xs mb-1">${p.brand}</p>
+      <h2 class="font-display text-3xl md:text-4xl text-white mb-1">${p.name}</h2>
+      <div class="flex items-center gap-3 mb-4">
+        <span class="font-display text-2xl text-red-500">${fp.toLocaleString()} EGP</span>
+        ${p.discount?`<span class="text-gray-500 line-through text-sm">${p.price.toLocaleString()} EGP</span><span class="bg-red-600 text-white text-xs font-cond font-700 px-2 py-0.5 rounded">−${p.discount}% OFF</span>`:''}
+      </div>
+      <p class="text-gray-400 text-sm leading-relaxed mb-6">${p.desc}</p>
+      <div class="mb-6">
+        <p class="font-cond font-700 tracking-wider uppercase text-xs text-gray-500 mb-3">Select Size</p>
+        <div class="flex flex-wrap gap-2" id="size-grid">${sizeBtns}</div>
+      </div>
+      <div class="flex gap-3 mb-6">
+        <button onclick="addToCartFromModal(${p.id})" class="btn-primary flex-1 justify-center py-4 text-base">Add to Cart</button>
+        <button onclick="addToCartFromModal(${p.id},true)" class="btn-outline justify-center px-5 py-4 text-sm whitespace-nowrap">Buy Now</button>
+      </div>
+      ${related.length?`<div>
+        <p class="font-cond font-700 tracking-wider uppercase text-xs text-gray-500 mb-3">You May Also Like</p>
+        <div class="grid grid-cols-3 gap-3">
+          ${related.map(r=>`<div onclick="closeModalBtn();openProduct(${r.id})" class="product-card cursor-pointer">
+            <div class="img-wrap" style="aspect-ratio:1/1"><img src="${r.img}" alt="${r.name}" loading="lazy"/></div>
+            <div class="p-2"><p class="text-xs text-white truncate">${r.name}</p><p class="text-xs text-red-500 font-display">${finalPrice(r).toLocaleString()}</p></div>
+          </div>`).join('')}
+        </div>
+      </div>`:''}
+    </div>`;
+  document.getElementById('modal-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function changeImg(src,btn){
+  document.getElementById('modal-main-img').src=src;
+  document.querySelectorAll('#modal-content .bottom-4 button').forEach(b=>b.classList.remove('border-red-500'));
+  btn.classList.add('border-red-500');
+}
+function pickSize(s,btn){
+  document.querySelectorAll('#size-grid .size-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedSize=s;
+}
+function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalBtn();}
+function closeModalBtn(){document.getElementById('modal-overlay').classList.remove('show');document.body.style.overflow='';}
+function addToCartFromModal(id,buyNow=false){
+  const p=PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  if(!selectedSize){showToast('⚠ Please select a size first');return;}
+  addToCart(p,selectedSize);
+  closeModalBtn();
+  if(buyNow) proceedToCheckout();
+}
+
+// ─────────────────────────────────────────────
+// CART
+// ─────────────────────────────────────────────
+function addToCart(p,size){
+  const key=`${p.id}-${size}`;
+  const existing=cart.find(c=>c.key===key);
+  if(existing){existing.qty++;}else{cart.push({key,p,size,qty:1});}
+  updateCartCount();
+  showToast(`✓ ${p.name} (${size}) added!`);
+}
+function updateCartCount(){
+  const total=cart.reduce((s,c)=>s+c.qty,0);
+  const el=document.getElementById('cart-count');
+  el.textContent=total;el.classList.toggle('hidden',total===0);
+  const cic=document.getElementById('cart-item-count');
+  if(cic) cic.textContent=total?`(${total} item${total>1?'s':''})`:'' ;
+}
+function finalPricex(p){return finalPrice(p);}
+function cartTotal(){return cart.reduce((s,c)=>s+finalPrice(c.p)*c.qty,0);}
+function renderCart(){
+  const empty=document.getElementById('cart-empty');
+  const content=document.getElementById('cart-content');
+  if(!cart.length){empty.classList.remove('hidden');content.classList.add('hidden');return;}
+  empty.classList.add('hidden');content.classList.remove('hidden');
+  document.getElementById('cart-items').innerHTML=cart.map(c=>{
+    const fp=finalPrice(c.p);
+    return `<div class="cart-item">
+      <img src="${c.p.img}" class="w-20 h-20 rounded-xl object-cover bg-gray-900 flex-shrink-0"/>
+      <div class="flex-1 min-w-0">
+        <p class="text-xs font-cond font-700 tracking-widest uppercase text-red-500">${c.p.brand}</p>
+        <p class="text-white font-600 text-sm truncate">${c.p.name}</p>
+        <p class="text-gray-500 text-xs">Size: ${c.size}</p>
+        <p class="font-display text-lg text-red-500 mt-1">${(fp*c.qty).toLocaleString()} EGP</p>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <div class="cart-qty">
+          <button class="qty-btn" onclick="changeQty('${c.key}',-1)">−</button>
+          <span class="font-display text-lg w-6 text-center">${c.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${c.key}',1)">+</button>
+        </div>
+        <button onclick="removeItem('${c.key}')" class="text-gray-600 hover:text-red-500 transition text-xs font-cond tracking-wider uppercase">Remove</button>
+      </div>
+    </div>`;
+  }).join('');
+  updateSummary();
+}
+function changeQty(key,d){const item=cart.find(c=>c.key===key);if(!item)return;item.qty=Math.max(1,item.qty+d);renderCart();updateCartCount();}
+function removeItem(key){cart=cart.filter(c=>c.key!==key);renderCart();updateCartCount();}
+function updateSummary(){
+  const sub=cart.reduce((s,c)=>s+c.p.price*c.qty,0);
+  const disc=sub-cartTotal();
+  document.getElementById('sum-sub').textContent=sub.toLocaleString()+' EGP';
+  document.getElementById('sum-disc').textContent='−'+disc.toLocaleString()+' EGP';
+  document.getElementById('sum-total').textContent=cartTotal().toLocaleString()+' EGP';
+}
+
+// ─────────────────────────────────────────────
+// CHECKOUT STEPS
+// ─────────────────────────────────────────────
+function coNext(step){
+  if(step===2){
+    document.getElementById('co-step1').classList.add('hidden');
+    document.getElementById('co-step2').classList.remove('hidden');
+    document.getElementById('step1').className='step-dot done';
+    document.getElementById('step2').className='step-dot active';
+    document.getElementById('line1').style.width='100%';
+  } else if(step===3){
+    document.getElementById('co-step2').classList.add('hidden');
+    document.getElementById('co-step3').classList.remove('hidden');
+    document.getElementById('step2').className='step-dot done';
+    document.getElementById('step3').className='step-dot active';
+    document.getElementById('line2').style.width='100%';
+    buildReview();
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function coBack(step){
+  if(step===1){
+    document.getElementById('co-step2').classList.add('hidden');
+    document.getElementById('co-step1').classList.remove('hidden');
+    document.getElementById('step2').className='step-dot';
+    document.getElementById('step1').className='step-dot active';
+    document.getElementById('line1').style.width='0';
+  } else if(step===2){
+    document.getElementById('co-step3').classList.add('hidden');
+    document.getElementById('co-step2').classList.remove('hidden');
+    document.getElementById('step3').className='step-dot';
+    document.getElementById('step2').className='step-dot active';
+    document.getElementById('line2').style.width='0';
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function selectPayment(type){
+  selectedPayment=type;
+  document.getElementById('pay-cod').className='bg-gray-900/60 border-2 '+(type==='cod'?'border-red-500':'border-gray-700')+' rounded-xl p-5 text-left transition';
+  document.getElementById('pay-instapay').className='bg-gray-900/60 border-2 '+(type==='instapay'?'border-red-500':'border-gray-700')+' rounded-xl p-5 text-left transition hover:border-gray-500';
+  document.getElementById('instapay-info').classList.toggle('hidden',type!=='instapay');
+}
+function buildReview(){
+  document.getElementById('co-review-items').innerHTML=cart.map(c=>`<div class="flex items-center gap-3 bg-gray-900/60 border border-gray-800 rounded-xl p-3">
+    <img src="${c.p.img}" class="w-14 h-14 rounded-lg object-cover flex-shrink-0"/>
+    <div class="flex-1"><p class="text-sm text-white font-600">${c.p.name}</p><p class="text-xs text-gray-500">Size ${c.size} × ${c.qty}</p></div>
+    <p class="font-display text-lg text-red-500">${(finalPrice(c.p)*c.qty).toLocaleString()} EGP</p>
+  </div>`).join('');
+  const fname=document.getElementById('co-fname').value||'Customer';
+  const lname=document.getElementById('co-lname').value||'';
+  const addr=document.getElementById('co-addr').value||'—';
+  const city=document.getElementById('co-city').value||'Cairo';
+  const phone=document.getElementById('co-phone').value||'—';
+  document.getElementById('co-delivery-text').textContent=`${fname} ${lname} · ${addr}, ${city} · ${phone}`;
+  const sub=cart.reduce((s,c)=>s+c.p.price*c.qty,0);
+  const total=cartTotal();
+  document.getElementById('co-sub').textContent=sub.toLocaleString()+' EGP';
+  document.getElementById('co-disc').textContent='−'+(sub-total).toLocaleString()+' EGP';
+  document.getElementById('co-total').textContent=total.toLocaleString()+' EGP';
+}
+function placeOrder(){
+  const orderNum='MKX-'+Date.now().toString().slice(-6);
+  const total=cartTotal();
+  const fname=document.getElementById('co-fname').value||'Friend';
+  document.getElementById('conf-order-num').textContent=orderNum;
+  document.getElementById('conf-total').textContent=total.toLocaleString()+' EGP';
+  document.getElementById('conf-name').textContent=fname;
+  document.getElementById('conf-payment').textContent=selectedPayment==='cod'?'Cash on Delivery':'InstaPay Transfer';
+  cart=[]; updateCartCount();
+  showView('confirmation');
+  spawnConfetti();
+}
+function spawnConfetti(){
+  const wrap=document.getElementById('confetti-wrap');
+  wrap.innerHTML='';
+  const colors=['#E8132A','#ffffff','#ff6b6b','#ffd700','#ff4d4d'];
+  for(let i=0;i<36;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.cssText=`left:${Math.random()*100}%;top:${-10+Math.random()*30}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*.8}s;animation-duration:${1.2+Math.random()*.8}s`;
+    wrap.appendChild(el);
+  }
+}
+
+// ─────────────────────────────────────────────
+// UTILITIES
+// ─────────────────────────────────────────────
+function scrollToDeals(){document.getElementById('deals-section')?.scrollIntoView({behavior:'smooth'});}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove('show'),2800);
+}
+function initObserver(){
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+}
+
+// ─────────────────────────────────────────────
+// INIT  — lands directly on home
+// ─────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded',()=>{
+  buildSidebar();
+  showView('home');
+  initObserver();
+});
+</script>
+</body>
+</html>
